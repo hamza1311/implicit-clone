@@ -184,6 +184,13 @@ impl<'de> serde::Deserialize<'de> for IString {
     }
 }
 
+#[cfg(feature = "serde")]
+impl From<IString> for JsValue {
+    fn from(value: IString) -> Self {
+        JsValue::from_str(value.as_str())
+    }
+}
+
 #[cfg(test)]
 mod test_string {
     use super::*;
